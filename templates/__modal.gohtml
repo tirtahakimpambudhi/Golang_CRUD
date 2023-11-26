@@ -1,0 +1,116 @@
+{{define "modal"}}
+	<!-- Edit Modal HTML -->
+	<div id="addEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="post" action="/add" >
+					<div class="modal-header">						
+						<h4 class="modal-title">Add Employee</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>NIS</label>
+							<input type="number" name="NIS" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" name="Name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Jurusan</label>
+							<select class="selectpicker" name="Jurusan" data-live-search="true">
+							{{range $index,$e := .Result.TypesJurusan}}
+							<option data-tokens="{{$index}}" value="{{$e}}">{{$e}}</option>
+                    		{{end}}	
+							</select>
+						</div>				
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-success" value="Add">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit Modal HTML -->
+	<div id="editEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Edit Employee</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>NIS</label>
+							<input type="number" name="NIS" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" name="Name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Jurusan</label>
+							<select class="selectpicker" name="Jurusan" data-live-search="true">
+							{{range $index,$e := .Result.TypesJurusan}}
+							<option data-tokens="{{$index}}" value="{{$e}}">{{$e}}</option>
+                    		{{end}}	
+							</select>
+						</div>				
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-success" value="Add">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Delete Modal HTML -->
+	<div id="deleteEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+					<div class="modal-header">						
+						<h4 class="modal-title">Delete Employee</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<p>Are you sure you want to delete these Records?</p>
+						<p class="text-warning"><small>This action cannot be undone.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="button" class="btn btn-danger submitDelete" value="Delete">
+					</div>
+			</div>
+		</div>
+	</div>
+	{{/* Jurusan */}}
+		<div id="typesJurusan" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Choose Jurusan</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+					<a href="ALL" class="badge text-bg-primary">ALL</a>	
+					<br>				
+					{{range $index,$e := .Result.TypesJurusan}}
+					<a href="{{$e}}" class="badge text-bg-primary">{{$e}}</a>
+                    {{end}}			
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="/static/js/index.js"></script>
+	<script src="/static/js/action.js"></script>
+</body>
+</html>
+{{end}}
